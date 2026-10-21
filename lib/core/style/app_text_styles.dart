@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uniflow/core/color/app_colors.dart';
 
 abstract class AppTextStyles {
   static const String _fontFamily = 'Inter';
@@ -10,70 +11,86 @@ abstract class AppTextStyles {
     required FontWeight fontWeight,
     Color? color,
     double? height,
-  }) =>
-      TextStyle(
-        fontSize: fontSize.sp,
-        fontWeight: fontWeight,
-        color: color,
-        fontFamily: _fontFamily,
-        height: height,
-      );
+  }) => TextStyle(
+    fontSize: fontSize.sp,
+    fontWeight: fontWeight,
+    color: color,
+    fontFamily: _fontFamily,
+    height: height,
+  );
 
   //?------------ Types ---------------------------------
 
   static TextStyle get s12w400 => _baseStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
-      );
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
+  static const title = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textDark,
+  );
+  static const cardTitle = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textDark,
+    height: 1.3,
+  );
+  static const body = TextStyle(fontSize: 11, color: AppColors.textGrey);
+  static const link = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primary,
+  );
 
   static TextStyle get s14w400 => _baseStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
-      );
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 
   static TextStyle get s14w500 => _baseStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: Colors.black,
-      );
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
 
   static TextStyle get s14w600 => _baseStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      );
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
   static TextStyle get s16w400 => _baseStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
-      );
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 
   static TextStyle get s16w500 => _baseStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: Colors.black,
-      );
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
 
   static TextStyle get s16w600 => _baseStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      );
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
   static TextStyle get s18w600 => _baseStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      );
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
   static TextStyle get s20w600 => _baseStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      );
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
 
   //?----------------------------------------------------
 }

@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:e_learning/core/services/network/network_info_service.dart';
+// import 'package:e_learning/core/services/network/network_info_service.dart';
+import 'package:uniflow/core/services/network/network_info_service.dart';
 
 class NetworkInfoServiceImpl implements NetworkInfoService {
   final Connectivity connectivity;

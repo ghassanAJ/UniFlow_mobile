@@ -150,6 +150,10 @@ class Failure {
 
       case DioExceptionType.unknown:
         return Failure(statusCode: status, message: 'Unknown error occurred');
+        
+      case DioExceptionType.transformTimeout:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 }

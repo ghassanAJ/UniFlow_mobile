@@ -11,10 +11,13 @@ class AppColors {
   // ---- Base palette ----
   static const Color _primary = Color(0xffFF6433);
   static const Color _primaryDark = Color(0xffD94A1E);
+    static const primaryDark = Color(0xFFE8552A);
+      static const primarySoft = Color(0xFFFFE6DC);
   static const Color _secondary = Color(0xffFF9066);
   static const Color _tertiary = Color(0xffFFF5F0);
   static const Color _neutral = Color(0xff1E2024);
-
+  static const track = Color(0xFFE3E1EA);
+    static const Color backgroundPrimary = Color(0xffF9F9FE);
   static const Color primary = _primary;
   static const Color ligthPrimary = _tertiary;
   static const Color secondary = _secondary;
@@ -59,7 +62,10 @@ class AppColors {
   static const Color linerProccessDark = Color(0xff3A3D43);
   static const Color loadingPrimary = _primary;
   static const Color loadingBackground = Color(0xffEAEAEA);
-
+  static const text = Color(0xFF1B1B2F);
+  static const hint = Color(0xFFB5A9A5);
+  static const muted = Color(0xFF6E6A7C);
+  static const green = Color(0xFF2EB67D);
   static const Color messageSuccess = Color(0xff28A745);
   static const Color messageError = Color(0xffDC3545);
   static const Color messageWarning = Color(0xffFFC107);
@@ -97,4 +103,12 @@ class AppColors {
   static const Color blackText = Color(0xff35363B);
   static const Color orangeOverlay = _tertiary;
   static const Color appBar = Color(0xff333333);
+    // static const primary = Color(0xFFFF6B3D);
+  // static const primarySoft = Color(0xFFFFEFE9);
+  static const accent = Color(0xFFFFA726);
+  // static const background = Color(0xFFF7F7F9);
+  static const surface = Colors.white;
+  static const textDark = Color(0xFF1E1E1E);
+  // static const textGrey = Color(0xFF8E8E93);
+  static const border = Color(0xFFEEEEEE);
 }

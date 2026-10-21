@@ -1,4 +1,5 @@
-import "package:e_learning/core/model/response_model/auth_response_model.dart";
+// import "package:e_learning/core/model/response_model/auth_response_model.dart";
+import "package:uniflow/core/model/response_model/auth_response_model.dart";
 
 abstract class SecureStorageService {
   //? ----------------------- Token -----------------------------------------
