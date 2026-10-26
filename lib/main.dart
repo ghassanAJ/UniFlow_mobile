@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:uniflow/core/widget/avatar_widget.dart';
 import 'package:uniflow/feature/Auth/presentation/screens/create_account_screen.dart';
 import 'package:uniflow/feature/Auth/presentation/screens/login_screen.dart';
 import 'package:uniflow/feature/Auth/presentation/screens/sign_up_page.dart';
+import 'package:uniflow/feature/courses/presentation/screens/course_datails.dart';
+import 'package:uniflow/feature/courses/presentation/screens/course_details.dart';
 import 'package:uniflow/feature/courses/presentation/screens/courses_screen.dart';
 import 'package:uniflow/feature/home/presentation/screen/home_page.dart';
 import 'package:uniflow/feature/home/presentation/screen/home_screen.dart';
 import 'package:uniflow/feature/home/presentation/screen/main_screen.dart';
+import 'package:uniflow/feature/teacher/presentation/screens/teachers_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,10 +27,16 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp(
-        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+        theme: ThemeData(
+          colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+          extensions: const <ThemeExtension<dynamic>>[
+            AvatarTokens(xs: 24, sm: 32, md: 40, lg: 56, xl: 80, radius: 12),
+          ],
+        ),
 
         debugShowCheckedModeBanner: false,
-        home: const CreateAccountScreen(), // أو الـ router تبعك
+
+        home: const MainScreen(), // أو الـ router تبعك
       ),
     );
   }

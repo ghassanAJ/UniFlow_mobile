@@ -12,6 +12,7 @@ import 'package:uniflow/feature/home/presentation/widget/home/course_list.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/home_header.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/promo_banner.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/teacher_list.dart';
+import 'package:uniflow/feature/teacher/presentation/screens/teachers_screen.dart';
 // import '../core/app_colors.dart';
 // import '../data/mock_data.dart';
 // import '../widgets/common/section_header.dart';
@@ -104,9 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
             _smallGap,
             const CourseList(courses: MockData.courses),
             _gap,
-            const Padding(
+            Padding(
               padding: _pad,
               child: SectionHeader(
+                onActionTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => TeachersScreen())),
                 title: 'Top Teachers',
                 actionLabel: 'See all',
               ),

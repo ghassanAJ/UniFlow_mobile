@@ -11,13 +11,13 @@ class AppColors {
   // ---- Base palette ----
   static const Color _primary = Color(0xffFF6433);
   static const Color _primaryDark = Color(0xffD94A1E);
-    static const primaryDark = Color(0xFFE8552A);
-      static const primarySoft = Color(0xFFFFE6DC);
+  static const primaryDark = Color(0xFFE8552A);
+  static const primarySoft = Color(0xFFFFE6DC);
   static const Color _secondary = Color(0xffFF9066);
   static const Color _tertiary = Color(0xffFFF5F0);
   static const Color _neutral = Color(0xff1E2024);
   static const track = Color(0xFFE3E1EA);
-    static const Color backgroundPrimary = Color(0xffF9F9FE);
+  static const Color backgroundPrimary = Color(0xffF9F9FE);
   static const Color primary = _primary;
   static const Color ligthPrimary = _tertiary;
   static const Color secondary = _secondary;
@@ -45,8 +45,8 @@ class AppColors {
   static const Color buttonSecondary = Color(0xffBABABA);
   static const Color buttonWhite = Color(0xffFFFFFF);
   static const Color buttonGreyF = Color(0xffEAEAEA);
-  static const Color buttontapped = _neutral;
-
+  static const Color buttontapped = _neutral; //#FFD3C2CC
+  static const Color borderCard = Color.fromARGB(255, 208, 188, 185);
   static const Color buttonTapSelected = _primary;
   static const Color buttonTapNotSelected = _tertiary;
 
@@ -103,7 +103,7 @@ class AppColors {
   static const Color blackText = Color(0xff35363B);
   static const Color orangeOverlay = _tertiary;
   static const Color appBar = Color(0xff333333);
-    // static const primary = Color(0xFFFF6B3D);
+  // static const primary = Color(0xFFFF6B3D);
   // static const primarySoft = Color(0xFFFFEFE9);
   static const accent = Color(0xFFFFA726);
   // static const background = Color(0xFFF7F7F9);
