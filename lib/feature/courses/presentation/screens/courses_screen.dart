@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
 import 'package:uniflow/core/design/app_spacing.dart';
-import 'package:uniflow/feature/courses/presentation/screens/course_datails.dart';
-import 'package:uniflow/feature/courses/presentation/screens/course_details.dart';
+import 'package:uniflow/core/router/app_routes.dart';
 import 'package:uniflow/feature/courses/presentation/widget/category_chips.dart';
 import 'package:uniflow/feature/courses/presentation/widget/course_card.dart';
 import 'package:uniflow/feature/courses/presentation/widget/courses_app_bar.dart';
@@ -141,14 +141,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     isBookmarked: _bookmarked.contains(course.id),
                     onBookmark: () => _toggleBookmark(course.id),
                     onEnroll: () {},
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CourseDatailScreen(),
-                        ),
-                      );
-                    },
+                    onTap: () => context.push(AppRoutes.courseDetails),
                   ),
                 );
               }, childCount: _courses.length),

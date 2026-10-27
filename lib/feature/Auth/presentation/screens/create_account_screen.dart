@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
 import 'package:uniflow/core/design/app_spacing.dart';
-import 'package:uniflow/feature/Auth/presentation/screens/sign_up_page.dart';
+import 'package:uniflow/core/router/app_routes.dart';
 import 'package:uniflow/feature/Auth/presentation/widget/drop_down_app_widget.dart';
 import 'package:uniflow/feature/Auth/presentation/widget/header_card.dart';
 import 'package:uniflow/feature/Auth/presentation/widget/input_form_field.dart';
@@ -467,9 +468,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         GestureDetector(
           onTap: () {
             /* TODO: navigate to login */
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const SignInScreen()),
-            );
+            context.go(AppRoutes.login);
           },
           child: const Text(
             'Log In',

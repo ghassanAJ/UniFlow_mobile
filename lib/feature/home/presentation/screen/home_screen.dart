@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
 import 'package:uniflow/core/design/app_spacing.dart';
-import 'package:uniflow/feature/courses/presentation/screens/courses_screen.dart';
+import 'package:uniflow/core/router/app_routes.dart';
 import 'package:uniflow/feature/home/data/remote/mock_data.dart';
 import 'package:uniflow/feature/home/presentation/widget/common/section_header.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/announcement_card.dart';
@@ -12,7 +13,6 @@ import 'package:uniflow/feature/home/presentation/widget/home/course_list.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/home_header.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/promo_banner.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/teacher_list.dart';
-import 'package:uniflow/feature/teacher/presentation/screens/teachers_screen.dart';
 // import '../core/app_colors.dart';
 // import '../data/mock_data.dart';
 // import '../widgets/common/section_header.dart';
@@ -94,12 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: 'Recommended Courses',
                 subtitle: 'Curated for your academic degree',
                 actionLabel: 'View All',
-                onActionTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CoursesScreen()),
-                  );
-                },
+                onActionTap: () => context.push(AppRoutes.courses),
               ),
             ),
             _smallGap,
@@ -108,15 +103,17 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: _pad,
               child: SectionHeader(
-                onActionTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => TeachersScreen())),
+                onActionTap: () => context.push(AppRoutes.teachers),
                 title: 'Top Teachers',
                 actionLabel: 'See all',
               ),
             ),
             _smallGap,
-            const Padding(
+             Padding(
               padding: _pad,
-              child: TeacherList(teachers: MockData.teachers),
+              child: TeacherList(teachers: MockData.teachers,onTeacherTap: (value) {
+                context.push(AppRoutes.teacherDetails);
+              },),
             ),
             _gap,
             const Padding(

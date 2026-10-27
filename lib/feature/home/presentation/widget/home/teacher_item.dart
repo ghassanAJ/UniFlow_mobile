@@ -21,10 +21,13 @@ class TeacherItem extends StatelessWidget {
         width: 72,
         child: Column(
           children: [
-            AppAvatar(
-                url: teacher.imageUrl,
-                radius: 28,
-                borderColor: AppColors.primary),
+            GestureDetector(
+              onTap: onTap,
+              child: AppAvatar(
+                  url: teacher.imageUrl,
+                  radius: 28,
+                  borderColor: AppColors.primary),
+            ),
             const SizedBox(height: 6),
             Text(teacher.name,
                 maxLines: 1,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
 import 'package:uniflow/core/style/app_text_styles.dart';
 
@@ -25,7 +26,9 @@ class EnrollsAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       scrolledUnderElevation: 0,
       leading: IconButton(
-        onPressed: onBack ?? () => Navigator.maybePop(context),
+        onPressed: onBack ?? () {
+          if (context.canPop()) context.pop();
+        },
         icon: const Icon(Icons.arrow_back_rounded, color: AppColors.textBlack),
       ),
       title: Text(

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
-import 'package:uniflow/feature/Auth/presentation/screens/create_account_screen.dart';
-import 'package:uniflow/feature/Auth/presentation/screens/login_screen.dart';
-import 'package:uniflow/feature/home/presentation/screen/home_screen.dart';
-import 'package:uniflow/feature/home/presentation/screen/main_screen.dart';
-// import '../core/app_colors.dart';
-// import '../widgets/auth/auth_widgets.dart';
-// import 'home_screen.dart';
+import 'package:uniflow/core/router/app_routes.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -52,11 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
     _goHome();
   }
 
-  void _goHome() {
-    Navigator.of(
-      context,
-    ).pushReplacement(MaterialPageRoute(builder: (_) => const MainScreen()));
-  }
+  void _goHome() => context.go(AppRoutes.home);
 
   @override
   Widget build(BuildContext context) {
@@ -148,11 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     question: "Don't have an account?",
                     actionLabel: 'Sign Up',
                     onActionTap: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (_) => const CreateAccountScreen(),
-                        ),
-                      );
+                      context.go(AppRoutes.createAccount);
                     },
                   ),
                 ],
