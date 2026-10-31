@@ -39,7 +39,7 @@ class EnrollsList extends StatelessWidget {
     }
 
     return ListView.separated(
-      padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 24.h),
+      padding: EdgeInsets.fromLTRB(16.w, 8.h, 16.w, 100.h),
       itemCount: items.length,
       separatorBuilder: (_, __) => SizedBox(height: 14.h),
       itemBuilder: (_, i) => EnrollCard(

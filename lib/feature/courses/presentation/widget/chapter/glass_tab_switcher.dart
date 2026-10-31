@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uniflow/core/color/app_colors.dart';
 import 'package:uniflow/core/style/app_text_styles.dart';
 import 'package:uniflow/core/widget/liquid_glass.dart';
+
 class GlassTabItem {
   final String label;
   final IconData icon;
@@ -49,7 +50,10 @@ class GlassTabSwitcher extends StatelessWidget {
               children: [
                 // المؤشر: يتبع قيمة السحب بشكل مستمر
                 Align(
-                  alignment: Alignment(n <= 1 ? 0 : -1 + 2 * value / (n - 1), 0),
+                  alignment: Alignment(
+                    n <= 1 ? 0 : -1 + 2 * value / (n - 1),
+                    0,
+                  ),
                   child: FractionallySizedBox(
                     widthFactor: 1 / n,
                     heightFactor: 1,
@@ -113,12 +117,16 @@ class _GlassTab extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(item.icon, size: 16.sp, color: color),
           SizedBox(width: 6.w),
           Text(
             item.label,
-            style: AppTextStyles.s14w600.copyWith(fontSize: 13.sp, color: color),
+            style: AppTextStyles.s14w600.copyWith(
+              fontSize: 13.sp,
+              color: color,
+            ),
           ),
           if (item.count != null) ...[
             SizedBox(width: 6.w),
@@ -145,4 +153,3 @@ class _GlassTab extends StatelessWidget {
     );
   }
 }
-

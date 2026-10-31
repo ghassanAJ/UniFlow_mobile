@@ -138,7 +138,7 @@ class TebsBarswidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.xs),
         decoration: BoxDecoration(
-          color: AppColors.track,
+          color: const Color.fromARGB(179, 227, 225, 234),
           borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
         ),
         child: TabBar(
@@ -147,8 +147,9 @@ class TebsBarswidget extends StatelessWidget {
           overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           labelColor: AppColors.textWhite,
           unselectedLabelColor: AppColors.textGrey,
-          labelStyle: AppTextStyles.s14w600,
-          unselectedLabelStyle: AppTextStyles.s14w500,
+          labelStyle: AppTextStyles.s14w600.copyWith(fontSize: 13),
+          unselectedLabelStyle: AppTextStyles.s14w500.copyWith(fontSize: 13),
+          labelPadding: EdgeInsets.zero,
           indicator: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
@@ -161,7 +162,7 @@ class TebsBarswidget extends StatelessWidget {
             ],
           ),
           tabs: const [
-            Tab(height: AppSpacing.huge, text: 'chapter'),
+            Tab(height: AppSpacing.huge, text: 'Chapter'),
             Tab(height: AppSpacing.huge, text: 'About'),
             Tab(height: AppSpacing.huge, text: 'Reviews'),
           ],

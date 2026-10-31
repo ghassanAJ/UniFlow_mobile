@@ -116,61 +116,74 @@ class RowCourseInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 32.h,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact = constraints.maxWidth < 360;
+
+        Widget chip({
+          required IconData icon,
+          required Color iconColor,
+          required String label,
+          TextStyle? labelStyle,
+          bool expand = false,
+        }) {
+          final text = Text(
+            label,
+            maxLines: 1,
+            softWrap: false,
+            overflow: TextOverflow.ellipsis,
+            style: labelStyle ??
+                AppTextStyles.s12w400.copyWith(color: AppColors.titleGrey),
+          );
+
+          return Row(
+            mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,
             children: [
-              Icon(Icons.star_rounded, color: AppColors.accent, size: 18),
-              Text('4.2', style: AppTextStyles.cardTitle),
+              Icon(icon, color: iconColor, size: 18.sp),
+              SizedBox(width: 4.w),
+              if (expand) Expanded(child: text) else text,
             ],
-          ),
-          Row(
-            children: [
-              Icon(
-                Icons.download_done_rounded,
-                color: AppColors.titleGrey,
-                size: 18,
-              ),
-              Text(
-                '2,450 Students',
-                style: AppTextStyles.s12w400.copyWith(
-                  color: AppColors.titleGrey,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Icon(
-                Icons.hourglass_bottom_rounded,
-                color: AppColors.titleGrey,
-                size: 18,
-              ),
-              Row(
-                children: [
-                  Text(
-                    '28 video ',
-                    style: AppTextStyles.s12w400.copyWith(
-                      color: AppColors.titleGrey,
-                    ),
-                  ),
-                  Icon(Icons.circle, color: AppColors.textSilver, size: 6),
-                  Text(
-                    ' 20 Hours ',
-                    style: AppTextStyles.s12w400.copyWith(
-                      color: AppColors.titleGrey,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
+          );
+        }
+
+        final rating = chip(
+          icon: Icons.star_rounded,
+          iconColor: AppColors.accent,
+          label: '4.2',
+          labelStyle: AppTextStyles.cardTitle,
+        );
+        final students = chip(
+          icon: Icons.download_done_rounded,
+          iconColor: AppColors.titleGrey,
+          label: '2,450 Students',
+          expand: !compact,
+        );
+        final duration = chip(
+          icon: Icons.hourglass_bottom_rounded,
+          iconColor: AppColors.titleGrey,
+          label: '28 video · 20 Hours',
+          expand: !compact,
+        );
+
+        if (compact) {
+          return Wrap(
+            spacing: AppSpacing.md.w,
+            runSpacing: AppSpacing.sm.h,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [rating, students, duration],
+          );
+        }
+
+        return Row(
+          children: [
+            rating,
+            SizedBox(width: AppSpacing.sm.w),
+            Expanded(child: students),
+            SizedBox(width: AppSpacing.sm.w),
+            Expanded(child: duration),
+          ],
+        );
+      },
     );
   }
 }
@@ -181,28 +194,40 @@ class RowNameCoursAndDescWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            color: Color(0xffFFF5F0),
-            border: Border.all(color: Color(0xffFFE9E0), width: 0.5),
-          ),
-          child: Text(
-            'UI /UX Design',
-            style: AppTextStyles.s14w600.copyWith(
-              color: AppColors.appBarBlack,
-              fontSize: 10.sp,
+        Flexible(
+          child: Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(999),
+                color: const Color(0xffFFF5F0),
+                border: Border.all(color: const Color(0xffFFE9E0), width: 0.5),
+              ),
+              child: Text(
+                'UI /UX Design',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.s14w600.copyWith(
+                  color: AppColors.appBarBlack,
+                  fontSize: 10.sp,
+                ),
+              ),
             ),
           ),
         ),
-        Text(
-          'Design Academy Institute',
-          style: AppTextStyles.s14w500.copyWith(
-            fontSize: 12.sp,
-            color: AppColors.textGrey,
+        SizedBox(width: AppSpacing.sm.w),
+        Flexible(
+          child: Text(
+            'Design Academy Institute',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.end,
+            style: AppTextStyles.s14w500.copyWith(
+              fontSize: 12.sp,
+              color: AppColors.textGrey,
+            ),
           ),
         ),
       ],

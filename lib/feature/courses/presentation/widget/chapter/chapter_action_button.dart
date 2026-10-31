@@ -38,7 +38,7 @@ class ChapterActionButton extends StatelessWidget {
               Icon(leadingIcon, size: 18.sp),
               SizedBox(width: 8.w),
             ],
-            Text(label, style: AppTextStyles.s14w600),
+            Text(label, style: AppTextStyles.s14w400.copyWith(color: AppColors.textWhite)),
             if (trailingIcon != null) ...[
               SizedBox(width: 8.w),
               Icon(trailingIcon, size: 18.sp),

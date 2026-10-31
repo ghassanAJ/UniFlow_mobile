@@ -8,11 +8,12 @@ import 'package:uniflow/feature/courses/presentation/screens/course_datails.dart
 import 'package:uniflow/feature/courses/presentation/screens/courses_screen.dart';
 import 'package:uniflow/feature/courses/presentation/screens/quiz_screen.dart';
 import 'package:uniflow/feature/home/presentation/screen/main_screen.dart';
+import 'package:uniflow/feature/profile/presentation/screen/profile_page.dart';
 import 'package:uniflow/feature/teacher/presentation/screens/teacher_details.dart';
 import 'package:uniflow/feature/teacher/presentation/screens/teachers_screen.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRoutes.chapterDetails,
+  initialLocation: AppRoutes.home,
   routes: [
     GoRoute(
       path: AppRoutes.home,
@@ -53,6 +54,11 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.quiz,
       name: 'quiz',
       builder: (context, state) => const QuizScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.profile,
+      name: 'profile',
+      builder: (context, state) => const ProfileScreen(),
     ),
     GoRoute(
       path: AppRoutes.chapterDetails,

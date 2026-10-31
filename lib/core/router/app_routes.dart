@@ -8,4 +8,5 @@ abstract final class AppRoutes {
   static const teacherDetails = '/teachers/details/:id';
   static const quiz = '/quiz';
   static const chapterDetails = '/chapters/details';
+  static const profile = '/profile';
 }

@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:uniflow/core/widget/app_bottom_nav.dart';
 import 'package:uniflow/core/widget/app_shell.dart';
 import 'package:uniflow/feature/courses/presentation/screens/courses_screen.dart';
 import 'package:uniflow/feature/enrolls/presentation/screens/enrolls_screen.dart';
 import 'package:uniflow/feature/home/presentation/screen/home_screen.dart';
-
-import '../../../../core/widget/app_bottom_nav.dart';
+import 'package:uniflow/feature/profile/presentation/screen/profile_page.dart';
 
 /// لإضافة شاشة جديدة: أضف ShellTab واحد هنا فقط.
 class MainScreen extends StatelessWidget {
@@ -12,57 +13,45 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Rebuild nav labels when locale changes.
+    context.locale;
+
     return AppShell(
-      initialIndex: 2,
+      initialIndex: 0,
       tabs: [
         ShellTab(
-          item: const BottomNavItem(
+          item: BottomNavItem(
             icon: Icons.home_outlined,
             activeIcon: Icons.home_rounded,
-            label: 'Home',
+            label: 'nav.home'.tr(),
           ),
-          builder: (_) => HomeScreen(), // ← استبدلها بشاشة الـ Home
+          builder: (_) => const HomeScreen(),
         ),
-        // ShellTab(
-        //   item: const BottomNavItem(
-        //     icon: Icons.search_rounded,
-        //     label: 'Search',
-        //   ),
-        //   builder: (_) => const _Placeholder('Search'),
-        // ),
         ShellTab(
-          item: const BottomNavItem(
+          item: BottomNavItem(
             icon: Icons.menu_book_outlined,
             activeIcon: Icons.menu_book_rounded,
-            label: 'Courses',
+            label: 'nav.courses'.tr(),
           ),
           builder: (_) => const CoursesScreen(),
         ),
         ShellTab(
-          item: const BottomNavItem(
+          item: BottomNavItem(
             icon: Icons.assignment_outlined,
             activeIcon: Icons.assignment_rounded,
-            label: 'Enrolls',
+            label: 'nav.enrolls'.tr(),
           ),
           builder: (_) => const EnrollsScreen(),
         ),
-        // ShellTab(
-        //   item: const BottomNavItem(
-        //     icon: Icons.person_outline_rounded,
-        //     activeIcon: Icons.person_rounded,
-        //     label: 'Profile',
-        //   ),
-        //   builder: (_) => const _Placeholder('Profile'),
-        // ),
+        ShellTab(
+          item: BottomNavItem(
+            icon: Icons.person_outline_rounded,
+            activeIcon: Icons.person_rounded,
+            label: 'nav.profile'.tr(),
+          ),
+          builder: (_) => const ProfileScreen(),
+        ),
       ],
     );
   }
-}
-
-class _Placeholder extends StatelessWidget {
-  final String title;
-  const _Placeholder(this.title);
-
-  @override
-  Widget build(BuildContext context) => Center(child: Text(title));
 }

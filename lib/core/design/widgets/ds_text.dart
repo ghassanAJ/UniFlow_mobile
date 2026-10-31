@@ -43,7 +43,8 @@ class DsText extends StatelessWidget {
       data,
       textAlign: textAlign,
       maxLines: maxLines,
-      overflow: overflow,
+      overflow: overflow ?? (maxLines != null ? TextOverflow.ellipsis : null),
+      softWrap: maxLines == 1 ? false : true,
       style: style == null ? scaled : scaled.merge(style),
     );
   }

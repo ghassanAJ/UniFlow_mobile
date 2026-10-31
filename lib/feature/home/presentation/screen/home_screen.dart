@@ -6,7 +6,6 @@ import 'package:uniflow/core/router/app_routes.dart';
 import 'package:uniflow/feature/home/data/remote/mock_data.dart';
 import 'package:uniflow/feature/home/presentation/widget/common/section_header.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/announcement_card.dart';
-import 'package:uniflow/feature/home/presentation/widget/home/app_bottom_nav.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/category_list.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/continue_learning_card.dart';
 import 'package:uniflow/feature/home/presentation/widget/home/course_list.dart';
@@ -34,7 +33,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _categoryIndex = 0;
-  int _navIndex = 0;
 
   static const _pad = EdgeInsets.symmetric(horizontal: 20);
   static const _gap = SizedBox(height: 22);
@@ -44,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.only(bottom: 100),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

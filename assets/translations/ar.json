@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "courses": "الكورسات",
+    "enrolls": "اشتراكاتي",
+    "profile": "حسابي"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "settings": "إعدادات الحساب",
+    "edit": "تعديل",
+    "university": "الجامعة",
+    "college": "الكلية",
+    "academicPerformance": "الأداء الأكاديمي",
+    "overallStanding": "التقييم العام",
+    "quizzesPerformance": "أداء الاختبارات",
+    "quizzesPassed": "ناجح (متوسط {}%)",
+    "watchedVideos": "الفيديوهات المشاهدة",
+    "completion": "مكتمل {}%",
+    "streakDays": "{} يوم نشاط متواصل",
+    "studyHours": "{} ساعة دراسة",
+    "honorRoll": "لوحة الشرف",
+    "settingsPreferences": "الإعدادات والتفضيلات",
+    "savedCourses": "الكورسات المحفوظة",
+    "coursesCount": "{} كورس",
+    "downloads": "التنزيلات",
+    "downloadsSubtitle": "محاضرات وملفات PDF بدون إنترنت",
+    "languages": "اللغة",
+    "currentLanguage": "العربية",
+    "colorsMode": "وضع الألوان",
+    "darkActive": "الوضع الداكن مفعّل",
+    "lightActive": "الوضع الفاتح مفعّل",
+    "privacyPolicy": "سياسة الخصوصية",
+    "terms": "الشروط والأحكام",
+    "aboutUs": "من نحن",
+    "logout": "تسجيل الخروج",
+    "appVersion": "إصدار التطبيق {}"
+  }
+}

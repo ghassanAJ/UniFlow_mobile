@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uniflow/core/design/design_system.dart';
 
 class CourseReview {
@@ -62,7 +63,7 @@ class CourseReviewsTab extends StatelessWidget {
             itemBuilder: (context, index) {
               if (index == 0) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.lg),
+                  padding: EdgeInsets.only(bottom: AppSpacing.md.h),
                   child: _ReviewsSummary(
                     averageRating: averageRating,
                     totalReviews: totalReviews,
@@ -79,7 +80,7 @@ class CourseReviewsTab extends StatelessWidget {
               final review = reviews[index - 1];
               return Padding(
                 padding: EdgeInsets.only(
-                  bottom: index == itemCount - 1 ? 0 : AppSpacing.md,
+                  bottom: index == itemCount - 1 ? 0 : AppSpacing.sm.h,
                 ),
                 child: _ReviewCard(review: review),
               );
@@ -114,41 +115,33 @@ class _ReviewsSummary extends StatelessWidget {
 
     return DsCard(
       variant: DsCardVariant.outlined,
+      padding: EdgeInsets.all(AppSpacing.md.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
+              DsText(
+                averageRating.toStringAsFixed(1),
+                role: DsTextRole.title,
+                color: colors.textPrimary,
+              ),
+              SizedBox(width: AppSpacing.sm.w),
+              ...List.generate(5, (index) {
+                final filled = index < averageRating.round();
+                return Icon(
+                  filled ? Icons.star_rounded : Icons.star_border_rounded,
+                  size: 14.sp,
+                  color: colors.accent,
+                );
+              }),
+              SizedBox(width: AppSpacing.sm.w),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DsText(
-                      averageRating.toStringAsFixed(1),
-                      role: DsTextRole.headline,
-                      color: colors.textPrimary,
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Row(
-                      children: [
-                        ...List.generate(5, (index) {
-                          final filled = index < averageRating.round();
-                          return Icon(
-                            filled
-                                ? Icons.star_rounded
-                                : Icons.star_border_rounded,
-                            size: 16,
-                            color: colors.accent,
-                          );
-                        }),
-                        const SizedBox(width: AppSpacing.sm),
-                        DsText(
-                          '$totalReviews reviews',
-                          role: DsTextRole.caption,
-                        ),
-                      ],
-                    ),
-                  ],
+                child: DsText(
+                  '$totalReviews reviews',
+                  role: DsTextRole.caption,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               if (onWriteReview != null)
@@ -161,10 +154,10 @@ class _ReviewsSummary extends StatelessWidget {
             ],
           ),
           if (distribution.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.lg),
+            SizedBox(height: AppSpacing.md.h),
             for (var star = 5; star >= 1; star--)
               Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                padding: EdgeInsets.only(bottom: AppSpacing.xs.h),
                 child: _RatingBarRow(
                   stars: star,
                   count: distribution[star] ?? 0,
@@ -197,28 +190,28 @@ class _RatingBarRow extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 18,
-          child: DsText('$stars', role: DsTextRole.caption),
+          width: 14.w,
+          child: DsText('$stars', role: DsTextRole.overline),
         ),
-        Icon(Icons.star_rounded, size: 12, color: colors.accent),
-        const SizedBox(width: AppSpacing.sm),
+        Icon(Icons.star_rounded, size: 11.sp, color: colors.accent),
+        SizedBox(width: AppSpacing.sm.w),
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(AppSpacing.radiusPill),
             child: LinearProgressIndicator(
               value: progress,
-              minHeight: 6,
+              minHeight: 5.h,
               backgroundColor: colors.surfaceMuted,
               color: colors.primary,
             ),
           ),
         ),
-        const SizedBox(width: AppSpacing.sm),
+        SizedBox(width: AppSpacing.sm.w),
         SizedBox(
-          width: 28,
+          width: 24.w,
           child: DsText(
             '$count',
-            role: DsTextRole.caption,
+            role: DsTextRole.overline,
             textAlign: TextAlign.end,
           ),
         ),
@@ -238,55 +231,63 @@ class _ReviewCard extends StatelessWidget {
 
     return DsCard(
       variant: DsCardVariant.outlined,
+      padding: EdgeInsets.all(AppSpacing.md.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               DsAvatar(
-                size: AvatarSize.md,
+                size: AvatarSize.sm,
                 shape: AvatarShape.rounded,
                 imageUrl: review.avatarUrl,
                 assetPath: review.avatarAsset,
                 initials: _initials(review.author),
               ),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DsText(
-                      review.author,
-                      role: DsTextRole.titleSmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    if (review.role != null)
-                      DsText(
-                        review.role!,
-                        role: DsTextRole.caption,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                  ],
+              SizedBox(width: AppSpacing.sm.w),
+              Flexible(
+                child: DsText(
+                  review.author,
+                  role: DsTextRole.label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              DsBadge(
-                label: review.rating.toStringAsFixed(1),
-                icon: Icons.star_rounded,
-                backgroundColor: colors.primarySoft,
-                foregroundColor: colors.accent,
-                iconColor: colors.accent,
+              if (review.role != null) ...[
+                SizedBox(width: AppSpacing.xs.w),
+                Flexible(
+                  child: DsText(
+                    '· ${review.role!}',
+                    role: DsTextRole.caption,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+              SizedBox(width: AppSpacing.sm.w),
+              Icon(Icons.star_rounded, size: 13.sp, color: colors.accent),
+              SizedBox(width: 2.w),
+              DsText(
+                review.rating.toStringAsFixed(1),
+                role: DsTextRole.label,
+                color: colors.accent,
+              ),
+              SizedBox(width: AppSpacing.sm.w),
+              DsText(
+                review.dateLabel,
+                role: DsTextRole.overline,
+                color: colors.textMuted,
+                maxLines: 1,
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.md),
-          DsText(review.comment, role: DsTextRole.body),
-          const SizedBox(height: AppSpacing.sm),
+          SizedBox(height: AppSpacing.sm.h),
           DsText(
-            review.dateLabel,
-            role: DsTextRole.overline,
-            color: colors.textMuted,
+            review.comment,
+            role: DsTextRole.caption,
+            color: colors.textPrimary,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
@@ -316,10 +317,10 @@ class _EmptyReviews extends StatelessWidget {
       variant: DsCardVariant.filled,
       child: Column(
         children: [
-          Icon(Icons.reviews_outlined, size: 36, color: colors.textMuted),
-          const SizedBox(height: AppSpacing.sm),
-          const DsText('No reviews yet', role: DsTextRole.titleSmall),
-          const SizedBox(height: AppSpacing.xs),
+          Icon(Icons.reviews_outlined, size: 32.sp, color: colors.textMuted),
+          SizedBox(height: AppSpacing.sm.h),
+          const DsText('No reviews yet', role: DsTextRole.label),
+          SizedBox(height: AppSpacing.xs.h),
           DsText(
             'Be the first to share your experience with this course.',
             role: DsTextRole.caption,

@@ -84,7 +84,13 @@ class DsChip extends StatelessWidget {
             Icon(icon, size: tokens.iconSize.r, color: resolvedIcon),
             SizedBox(width: 4.w),
           ],
-          DsText(label, role: role, color: foreground, maxLines: 1),
+          DsText(
+            label,
+            role: role,
+            color: foreground,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ],
       ),
     );

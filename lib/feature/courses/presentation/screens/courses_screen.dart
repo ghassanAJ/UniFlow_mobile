@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
-import 'package:uniflow/core/design/app_spacing.dart';
 import 'package:uniflow/core/router/app_routes.dart';
 import 'package:uniflow/feature/courses/presentation/widget/category_chips.dart';
 import 'package:uniflow/feature/courses/presentation/widget/course_card.dart';
@@ -147,7 +146,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
               }, childCount: _courses.length),
             ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: AppSpacing.giant)),
+          const SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
       ),
     );

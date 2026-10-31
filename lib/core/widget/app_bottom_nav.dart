@@ -32,7 +32,7 @@ class AppBottomNav extends StatelessWidget {
   final ValueChanged<int> onTap;
 
   /// المساحة التي يشغلها الشريط — أضفها لـ padding السفلي بالقوائم.
-  static double get floatingSpace => 564.h + 12.h + 16.h;
+  static double get floatingSpace => 64.h + 12.h + 16.h;
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +182,12 @@ class _NavButton extends StatelessWidget {
               fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
               color: color,
             ),
-            child: Text(item.label, maxLines: 1),
+            child: Text(
+              item.label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),

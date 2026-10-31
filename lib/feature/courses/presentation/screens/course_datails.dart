@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:uniflow/core/design/design_system.dart';
-import 'package:uniflow/feature/courses/presentation/screens/course_details.dart';
 import 'package:uniflow/feature/courses/presentation/widget/course_about_tab.dart';
+import 'package:uniflow/feature/courses/presentation/widget/course_details_header.dart';
+import 'package:uniflow/feature/courses/presentation/widget/course_details_tabs.dart';
 import 'package:uniflow/feature/courses/presentation/widget/course_reviews_tab.dart';
-import 'package:uniflow/feature/courses/presentation/widget/tab_view_widget.dart';
 
 class CourseDatailScreen extends StatefulWidget {
   const CourseDatailScreen({super.key});
@@ -64,9 +64,14 @@ class _CourseDatailScreenState extends State<CourseDatailScreen> {
   @override
   Widget build(BuildContext context) {
     final colors = context.ds.colors;
+    final pagePad = context.pagePadding;
 
     return Scaffold(
       backgroundColor: colors.background,
+      bottomNavigationBar: CourseDetailsEnrollBar(
+        price: 1800000,
+        onEnroll: () {},
+      ),
       body: SafeArea(
         child: DefaultTabController(
           length: 3,
@@ -76,166 +81,137 @@ class _CourseDatailScreenState extends State<CourseDatailScreen> {
               return [
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      AppSpacing.screenHorizontal,
-                      AppSpacing.screenVertical,
-                      AppSpacing.screenHorizontal,
+                    padding: EdgeInsets.fromLTRB(
+                      pagePad.left,
+                      AppSpacing.screenVertical.h,
+                      pagePad.right,
                       0,
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: double.infinity,
-                          height: 220.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              AppSpacing.radiusXl.r,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            AppSpacing.radiusXl.r,
+                          ),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 220.h,
+                            child: Image.network(
+                              'https://picsum.photos/seed/uxcourse/900/600',
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  ColoredBox(color: colors.surfaceMuted),
                             ),
-                            color: colors.surfaceMuted,
                           ),
                         ),
-                        const SizedBox(height: AppSpacing.xl),
-                        const RowNameCoursAndDescWidget(),
-                        const SizedBox(height: AppSpacing.lg),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.md,
-                          ),
-                          child: DsText(
-                            'UX for Beginner : Complete Design System & Prototype',
-                            role: DsTextRole.title,
-                            color: colors.textPrimary,
-                          ),
+                        SizedBox(height: AppSpacing.xl.h),
+                        const CourseDetailsCategoryRow(
+                          category: 'UI / UX Design',
+                          provider: 'Design Academy Institute',
                         ),
-                        const SizedBox(height: AppSpacing.lg),
-                        const RowCourseInfoWidget(),
-                        const SizedBox(height: AppSpacing.lg),
-                        const _InstructorRow(),
-                        const SizedBox(height: AppSpacing.md),
+                        SizedBox(height: AppSpacing.md.h),
+                        DsText(
+                          'UX for Beginners: Complete Design System & Prototype',
+                          role: DsTextRole.headline,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: AppSpacing.md.h),
+                        const CourseDetailsStatsRow(
+                          rating: '4.2',
+                          studentsLabel: '2,450 Students',
+                          videosLabel: '28 videos',
+                          hoursLabel: '20 Hours',
+                        ),
+                        SizedBox(height: AppSpacing.md.h),
+                        CourseDetailsInstructorRow(
+                          name: 'Alex Johnson',
+                          subtitle: 'Senior UX Lead at Spotify',
+                          initials: 'AJ',
+                          onViewProfile: () {},
+                        ),
+                        SizedBox(height: AppSpacing.sm.h),
                       ],
                     ),
                   ),
                 ),
-                SliverOverlapAbsorber(
-                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                    context,
-                  ),
-                  sliver: SliverPersistentHeader(
-                    pinned: true,
-                    delegate: _PinnedTabsHeaderDelegate(
-                      background: colors.background,
-                    ),
-                  ),
+              SliverOverlapAbsorber(
+                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                  context,
                 ),
-              ];
-            },
-            body: TabBarView(
-              children: [
-                Builder(
-                  builder: (context) => _ChapterList(chapters: _chapters),
-                ),
-                Builder(
-                  builder: (context) => const CourseAboutTab(
-                    description:
-                        'A practical beginner UX course covering research, wireframing, design systems, and high-fidelity prototyping. Build a complete product flow from idea to interactive prototype.',
-                    level: 'Beginner',
-                    language: 'English',
-                    lastUpdated: 'Updated Oct 2026',
-                    outcomes: [
-                      'Create user flows and wireframes with confidence',
-                      'Build a reusable UI design system',
-                      'Prototype interactive screens for usability testing',
-                      'Present design decisions with clear rationale',
-                    ],
-                    requirements: [
-                      'No prior UX experience required',
-                      'A laptop with Figma installed',
-                      'Willingness to practice weekly',
-                    ],
-                    includes: [
-                      CourseAboutInclude(
-                        icon: Icons.play_circle_outline_rounded,
-                        label: '28 videos',
-                      ),
-                      CourseAboutInclude(
-                        icon: Icons.access_time_rounded,
-                        label: '20 hours',
-                      ),
-                      CourseAboutInclude(
-                        icon: Icons.download_rounded,
-                        label: 'Downloadable resources',
-                      ),
-                      CourseAboutInclude(
-                        icon: Icons.phone_android_rounded,
-                        label: 'Mobile & desktop',
-                      ),
-                    ],
+                sliver: SliverPersistentHeader(
+                  pinned: true,
+                  delegate: _PinnedTabsHeaderDelegate(
+                    background: colors.background,
                   ),
                 ),
-                Builder(
-                  builder: (context) => CourseReviewsTab(
-                    averageRating: 4.6,
-                    totalReviews: _reviews.length,
-                    ratingDistribution: const {
-                      5: 2,
-                      4: 2,
-                      3: 0,
-                      2: 0,
-                      1: 0,
-                    },
-                    reviews: _reviews,
-                    onWriteReview: () {},
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _InstructorRow extends StatelessWidget {
-  const _InstructorRow();
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.ds.colors;
-
-    return Row(
-      children: [
-        const DsAvatar(
-          assetPath: 'assets/images/avatar.png',
-          size: AvatarSize.md,
-          shape: AvatarShape.rounded,
-          showBorder: true,
-          initials: 'AJ',
-        ),
-        const SizedBox(width: AppSpacing.sm),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DsText(
-                'Alex Johnson',
-                role: DsTextRole.titleSmall,
-                color: colors.textPrimary,
               ),
-              DsText(
-                'Senior UX Lead at Spotify',
-                role: DsTextRole.caption,
-                color: colors.textSecondary,
+            ];
+          },
+          body: TabBarView(
+            children: [
+              Builder(
+                builder: (context) => _ChapterList(chapters: _chapters),
+              ),
+              Builder(
+                builder: (context) => const CourseAboutTab(
+                  description:
+                      'A practical beginner UX course covering research, wireframing, design systems, and high-fidelity prototyping. Build a complete product flow from idea to interactive prototype.',
+                  level: 'Beginner',
+                  language: 'English',
+                  lastUpdated: 'Updated Oct 2026',
+                  outcomes: [
+                    'Create user flows and wireframes with confidence',
+                    'Build a reusable UI design system',
+                    'Prototype interactive screens for usability testing',
+                    'Present design decisions with clear rationale',
+                  ],
+                  requirements: [
+                    'No prior UX experience required',
+                    'A laptop with Figma installed',
+                    'Willingness to practice weekly',
+                  ],
+                  includes: [
+                    CourseAboutInclude(
+                      icon: Icons.play_circle_outline_rounded,
+                      label: '28 videos',
+                    ),
+                    CourseAboutInclude(
+                      icon: Icons.access_time_rounded,
+                      label: '20 hours',
+                    ),
+                    CourseAboutInclude(
+                      icon: Icons.download_rounded,
+                      label: 'Downloadable resources',
+                    ),
+                    CourseAboutInclude(
+                      icon: Icons.phone_android_rounded,
+                      label: 'Mobile & desktop',
+                    ),
+                  ],
+                ),
+              ),
+              Builder(
+                builder: (context) => CourseReviewsTab(
+                  averageRating: 4.6,
+                  totalReviews: _reviews.length,
+                  ratingDistribution: const {
+                    5: 2,
+                    4: 2,
+                    3: 0,
+                    2: 0,
+                    1: 0,
+                  },
+                  reviews: _reviews,
+                  onWriteReview: () {},
+                ),
               ),
             ],
           ),
         ),
-        DsText(
-          'view profile',
-          role: DsTextRole.label,
-          color: colors.primary,
-        ),
-      ],
+      ),
+      ),
     );
   }
 }
@@ -248,6 +224,7 @@ class _ChapterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.ds.colors;
+    final pagePad = context.pagePadding;
 
     return CustomScrollView(
       key: const PageStorageKey('course-chapters'),
@@ -256,34 +233,35 @@ class _ChapterList extends StatelessWidget {
           handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         ),
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.screenHorizontal,
-            AppSpacing.md,
-            AppSpacing.screenHorizontal,
-            AppSpacing.xxl,
+          padding: EdgeInsets.fromLTRB(
+            pagePad.left,
+            AppSpacing.md.h,
+            pagePad.right,
+            AppSpacing.xxl.h,
           ),
           sliver: SliverList.separated(
             itemCount: chapters.length,
             separatorBuilder: (context, index) =>
-                const SizedBox(height: AppSpacing.md),
+                SizedBox(height: AppSpacing.sm.h),
             itemBuilder: (context, index) {
               final chapter = chapters[index];
               final number = (index + 1).toString().padLeft(2, '0');
 
               return DsCard(
                 variant: DsCardVariant.outlined,
-                borderColor: colors.primarySoft,
-                padding: const EdgeInsets.all(AppSpacing.md),
+                borderColor: colors.border,
+                padding: EdgeInsets.all(AppSpacing.md.r),
+                onTap: () {},
                 child: Row(
                   children: [
                     Container(
-                      width: 36,
-                      height: 36,
+                      width: 40.r,
+                      height: 40.r,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: colors.primarySoft,
                         borderRadius: BorderRadius.circular(
-                          AppSpacing.radiusPill,
+                          AppSpacing.radiusMd.r,
                         ),
                       ),
                       child: DsText(
@@ -292,7 +270,7 @@ class _ChapterList extends StatelessWidget {
                         color: colors.primary,
                       ),
                     ),
-                    const SizedBox(width: AppSpacing.md),
+                    SizedBox(width: AppSpacing.md.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,16 +278,17 @@ class _ChapterList extends StatelessWidget {
                           DsText(
                             chapter.$1,
                             role: DsTextRole.titleSmall,
-                            maxLines: 1,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
+                          SizedBox(height: AppSpacing.xxs.h),
                           DsText(chapter.$2, role: DsTextRole.caption),
                         ],
                       ),
                     ),
                     Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 14,
+                      Icons.chevron_right_rounded,
+                      size: 20.sp,
                       color: colors.textMuted,
                     ),
                   ],
@@ -328,13 +307,11 @@ class _PinnedTabsHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   final Color background;
 
-  static const double _height = 72;
+  @override
+  double get minExtent => 72;
 
   @override
-  double get minExtent => _height;
-
-  @override
-  double get maxExtent => _height;
+  double get maxExtent => 72;
 
   @override
   Widget build(
@@ -346,7 +323,7 @@ class _PinnedTabsHeaderDelegate extends SliverPersistentHeaderDelegate {
       color: background,
       child: const Align(
         alignment: Alignment.bottomCenter,
-        child: TebsBarswidget(),
+        child: CourseDetailsTabs(),
       ),
     );
   }

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "enrolls": "Enrolls",
+    "profile": "Profile"
+  },
+  "profile": {
+    "title": "Profile",
+    "settings": "Profile Settings",
+    "edit": "Edit",
+    "university": "University",
+    "college": "College",
+    "academicPerformance": "Academic Performance",
+    "overallStanding": "Overall Standing",
+    "quizzesPerformance": "Quizzes Performance",
+    "quizzesPassed": "Passed ({}% Avg)",
+    "watchedVideos": "Watched Videos",
+    "completion": "{}% Completion",
+    "streakDays": "{} Days Active Streak",
+    "studyHours": "{} Hours spent studying",
+    "honorRoll": "Honor Roll",
+    "settingsPreferences": "Settings & Preferences",
+    "savedCourses": "Saved Courses",
+    "coursesCount": "{} courses",
+    "downloads": "Downloads",
+    "downloadsSubtitle": "Offline lectures & PDFs",
+    "languages": "Languages",
+    "currentLanguage": "English",
+    "colorsMode": "Colors Mode",
+    "darkActive": "Dark Theme active",
+    "lightActive": "Light Theme active",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "aboutUs": "About us",
+    "logout": "Log Out",
+    "appVersion": "App Version {}"
+  }
+}
