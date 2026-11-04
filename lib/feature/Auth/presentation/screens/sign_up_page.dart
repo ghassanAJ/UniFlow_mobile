@@ -1,7 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uniflow/core/color/app_colors.dart';
+import 'package:uniflow/core/network/api_general.dart';
 import 'package:uniflow/core/router/app_routes.dart';
+import 'package:uniflow/feature/Auth/data/source/remote/auth_remote_data_source_impl.dart';
+import 'package:uniflow/feature/Auth/data/source/remote/auth_remote_data_sourse.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -40,11 +44,12 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Future<void> _onLogin() async {
     if (!_formKey.currentState!.validate()) return;
-    setState(() => _isLoading = true);
-    await Future.delayed(const Duration(seconds: 1)); // TODO: استدعاء الـ API
-    if (!mounted) return;
-    setState(() => _isLoading = false);
-    _goHome();
+    // setState(() => _isLoading = true);
+    await AuthRemoteDataSourceImpl(api: API(dio: Dio())).login();
+    //   await Future.delayed(const Duration(seconds: 1)); // TODO: استدعاء الـ API
+    //   if (!mounted) return;
+    //   setState(() => _isLoading = false);
+    //   _goHome();
   }
 
   void _goHome() => context.go(AppRoutes.home);

@@ -13,7 +13,7 @@ import 'package:uniflow/feature/teacher/presentation/screens/teacher_details.dar
 import 'package:uniflow/feature/teacher/presentation/screens/teachers_screen.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRoutes.home,
+  initialLocation: AppRoutes.login,
   routes: [
     GoRoute(
       path: AppRoutes.home,
